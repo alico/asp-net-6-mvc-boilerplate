@@ -1,0 +1,69 @@
+﻿@using reCAPTCHA.AspNetCore
+@using reCAPTCHA.AspNetCore.Versions;
+@using Microsoft.Extensions.Options
+@inject IOptions<RecaptchaSettings> RecaptchaSettings;
+
+
+@model BoilerPlate.Web.Entities.SignUpModel
+
+@{
+    ViewData["Title"] = "SignUp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>SignUp</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SignUp">
+            @Html.AntiForgeryToken()
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="AgeCheck" /> @Html.DisplayNameFor(model => model.AgeCheck)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="MarketingOptIn" /> @Html.DisplayNameFor(model => model.MarketingOptIn)
+                </label>
+            </div>
+
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="TermsConditions" /> @Html.DisplayNameFor(model => model.TermsConditions)
+                </label>
+            </div>
+
+            <div class="text-center my-4 w-100">
+                @(Html.Recaptcha<RecaptchaV2Checkbox>(RecaptchaSettings.Value))
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Sign Up" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

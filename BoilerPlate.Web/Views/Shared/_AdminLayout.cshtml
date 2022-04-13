@@ -1,0 +1,71 @@
+﻿@inject IViewLocalizer localizer;
+@inject IIdentityService _identityService;
+
+<!DOCTYPE html>
+<html lang="en">
+
+<cache vary-by-culture="true" vary-by-route="Controller,Action">
+    <partial name="Head" />
+</cache>
+
+<body>
+
+    <header>
+        @if (User.IsInRole("Admin"))
+        {
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Worldwide Hide</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a href="@Url.Action("Create", "Settings", new { countryCode= 1})" title="Site Configuration" class="nav-link text-dark">
+                                    Campaign Management
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="/hangfire" title="Hangfire" class="nav-link text-dark">
+                                    Hangfire
+                                </a>
+                            </li>
+
+                            @if (_identityService.IsSignedIn(User))
+                            {
+                                <a asp-area="" asp-controller="Home" asp-action="Index" title="@User.Identity.Name" class="nav-link text-dark">
+                                    @User.Identity.Name
+                                </a>
+                                <a asp-area="" asp-controller="Account" asp-action="SignOut" title="Sign Out" class="nav-link text-dark">
+                                    Sign Out
+                                </a>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        }
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <cache vary-by-culture="true">
+        <partial name="Footer" />
+    </cache>
+
+
+    <cache>
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+    </cache>
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+</html>

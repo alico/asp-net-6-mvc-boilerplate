@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoilerPlate.Data.Entities\BoilerPlate.Data.Entities.csproj" />
+    <ProjectReference Include="..\BoilerPlate.Utils\BoilerPlate.Utils.csproj" />
+    <ProjectReference Include="..\BoilerPlate.Web.Entities\BoilerPlate.Web.Entities.csproj" />
+  </ItemGroup>
+
+</Project>

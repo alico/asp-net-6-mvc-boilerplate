@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hangfire.Core" Version="1.7.28" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BoilerPlate.Data.Contract\BoilerPlate.Data.Contract.csproj" />
+    <ProjectReference Include="..\BoilerPlate.Data.Entities\BoilerPlate.Data.Entities.csproj" />
+    <ProjectReference Include="..\BoilerPlate.Service.Contract\BoilerPlate.Service.Contract.csproj" />
+    <ProjectReference Include="..\BoilerPlate.Utils\BoilerPlate.Utils.csproj" />
+  </ItemGroup>
+
+</Project>

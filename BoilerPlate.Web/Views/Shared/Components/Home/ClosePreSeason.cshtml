@@ -1,0 +1,22 @@
+﻿@inject IViewLocalizer localizer;
+@inject IIdentityService _identityService;
+@model BoilerPlate.Web.Entities.PreSeasonModel;
+
+@{
+    var country = SiteHelper.GetCountry();
+    var title = SiteHelper.GetTitle();
+}
+
+<div class="bg--country bg--country-@country-opt2">
+
+
+    <section class="fullwidth">
+        <div class="container text-light pt-2 pb-0">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-8 col-xl-6 text-center">
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
